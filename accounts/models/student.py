@@ -31,12 +31,11 @@ class Student(models.Model):
 
     
     @receiver(post_save, sender=User)
-    def create_user_student(sender, instance, created, **kwargs):
+    def create_student(sender, instance, created, **kwargs):
 	    if created:
 		    Student.objects.create(user=instance)
 
-    @receiver(post_save, sender=User)
-    def save_user_student(sender, instance, **kwargs):
+    def save_student(sender, instance, **kwargs):
 	    instance.student.save()
     
     def get_absolute_url(self):

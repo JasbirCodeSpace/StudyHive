@@ -100,7 +100,7 @@ class RegisterForm(UserCreationForm):
         cleaned_data = super(RegisterForm, self).clean()
         return cleaned_data
 
-class LoginForm(AuthenticationForm):
+class LoginForm(forms.Form):
 
     username = forms.CharField(
         widget=forms.TextInput(
@@ -119,7 +119,3 @@ class LoginForm(AuthenticationForm):
             }
         ), required = True
     )
-
-    class Meta:
-        model = User
-        fields = ("username", "password")

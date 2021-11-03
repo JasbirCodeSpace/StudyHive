@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from accounts.forms.student import RegisterForm, LoginForm
+from django.contrib.auth.decorators import login_required
 
 def login_view(request):
 
@@ -20,7 +21,7 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                redirect('home')
+                return redirect('home')
             else:
                 msg = "Invalid credentials"
         
@@ -59,3 +60,8 @@ def register_view(request):
             msg = "Error validating the form"
 
     return render(request, "accounts/register.html", {'form': form, 'msg': msg, 'success': success})
+
+@login_required(login_url='/login/')
+def logout_view(request):
+    logout(request)
+    return redirect('login')
