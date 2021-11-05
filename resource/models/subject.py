@@ -15,4 +15,4 @@ class Subject(models.Model):
 
     def __str__(self):
         """Unicode representation of Subject."""
-        return f"Suject [{self.code}]"
+        return f"{self.code} {self.name}"

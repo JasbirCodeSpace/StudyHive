@@ -12,4 +12,4 @@ class Course(models.Model):
 
     def __str__(self):
         """Unicode representation of Course."""
-        return f"Course [{self.name}]"
+        return self.name
