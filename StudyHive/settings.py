@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -124,5 +124,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+### Django storages - use this for production
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = BASE_DIR/'StudyHive/uploads/'
+
+### Django storages - use in production
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

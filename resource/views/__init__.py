@@ -1,1 +1,1 @@
-from . import request, upload
+from . import request, upload, resources

@@ -11,7 +11,10 @@
     <div class="container">
         <div class="row">
           <div class="col-md-6 d-flex flex-column mx-auto">
-            <div class="card card-plain mt-8">
+            {% if success %}
+            <span class="badge bg-gradient-success">Successfully submitted request</span>
+            {% endif %}
+            <div class="card card-plain mt-2">
               <div class="card-header pb-0 text-left bg-transparent">
                 <h4 class="text-info text-gradient">
                   Request resource

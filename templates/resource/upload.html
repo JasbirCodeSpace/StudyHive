@@ -11,7 +11,10 @@
     <div class="container">
         <div class="row">
           <div class="col-md-6 d-flex flex-column mx-auto">
-            <div class="card card-plain mt-8">
+            {% if success %}
+            <span class="badge bg-gradient-success">Successfully submitted request</span>
+            {% endif %}
+            <div class="card card-plain mt-2">
               <div class="card-header pb-0 text-left bg-transparent">
                 <h4 class="text-info text-gradient">
                   Upload resource
@@ -20,37 +23,52 @@
                     {% if msg %}
                         {{ msg | safe }}
                     {% else %}
-                        Add resource details
+                        Add resource details and file
                     {% endif %}                  
                 </p>
               </div>
               <div class="card-body">
-                <form role="form text-left" method="post" action="">
+                <form role="form text-left" method="post" action="" enctype="multipart/form-data">
                   
                   {% csrf_token %}
 
                   <div class="row">
                     <div class="col-md-12">
-                      <label>Username</label>
+                      <label>Course</label>
                       <div class="mb-3">
-                        {{ form.username }}
+                        {{ form.course }}
                       </div>
-                      <span class="text-error">{{ form.username.errors }}</span>
+                      <span class="text-error">{{ form.course.errors }}</span>
                     </div>
                     <div class="col-md-12">
-                      <label>Password</label>
+                      <label>Subject</label>
                       <div class="mb-3">
-                        {{ form.password }}
+                        {{ form.subject }}
                       </div>
-                      <span class="text-error">{{ form.password.errors }}</span>
+                      <span class="text-error">{{ form.subject.errors }}</span>
                     </div>
+                  </div>                    
+                  <div class="col-md-12">
+                  <label>Type</label>
+                    <div class="mb-3">
+                      {{ form.type }}
+                    </div>
+                    <span class="text-error">{{ form.type.errors }}</span>
                   </div>
+                  <div class="col-md-12">
+                    <label>File</label>
+                      <div class="mb-3">
+                        {{ form.file }}
+                      </div>
+                      <span class="text-error">{{ form.file.errors }}</span>
+                    </div>
 
                   <div class="text-center">
                     <button type="submit" name="login" class="btn bg-gradient-info w-100 mt-4 mb-0">Upload</button>
                   </div>
                 </form>
               </div>
+
             </div>
           </div>
         </div>
