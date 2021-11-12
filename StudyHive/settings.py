@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'home',
-    'resource'
+    'resource',
+    'dsa',
+    'import_export'
 ]
 
 MIDDLEWARE = [
