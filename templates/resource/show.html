@@ -25,35 +25,44 @@
           <div class="card-header pb-0 p-3">
             <!-- <h6 class="mb-1">Projects</h6>
             <p class="text-sm">Architects design houses</p> -->
-            <form class="">
-              <div class="form d-block">
-                <div class="my-1">
-                  <select class="mr-sm-2 form-control form-select" id="inlineFormCustomSelect">
-                    <option selected>Choose...</option>
+            <form class="form d-flex justify-content-center">
+              {% csrf_token %}
+                <div class="m-2">
+                  <select class="mr-sm-2 form-control form-select" id="select-course">
+                    <option selected>Course</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
                 </div>
-                <div class="my-1">
-                  <select class="mr-sm-2 form-control form-select" id="inlineFormCustomSelect">
-                    <option selected>Choose...</option>
+                <div class="m-2">
+                  <select class="mr-sm-2 form-control form-select" id="select-subject">
+                    <option selected>Subject</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                   </select>
                 </div>
-              </div>
+                <div class="m-2">
+                  <select class="mr-sm-2 form-control form-select" id="select-resource">
+                    <option selected>Resource</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+
+                </div>
+                <button type="submit" class="btn btn-outline-primary my-1">Filter</button>
             </form>
           </div>
           <div class="card-body p-3">
-            <div class="row">
+            <div id="resources-row" class="row">
               {% for resource in resources %}
               <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card card-blog card-plain">
                   <div class="position-relative">
                     <a class="d-block shadow-xl border-radius-xl">
-                      <iframe src="/uploads/{{resource.file}}&output=embed" width="300" height="200" ></iframe>
+                      <iframe src="/uploads/{{resource.file}}" width="300" height="200" ></iframe>
                     </a>
                   </div>
                   <div class="card-body px-1 pb-0">
@@ -67,7 +76,9 @@
                       Type: {{resource.type|resource_type}}
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-0">View Project</button>
+                      <a href="/uploads/{{resource.file}}" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">View {{resource.type|resource_type}}</button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -89,4 +100,59 @@
 <!-- Specific JS goes HERE --> 
 {% block javascripts %}
     {{ block.super }}
+    <script>
+      // const fetchResources = async (course, subject, resource) => {
+      //   const response = await fetch("{% url 'fetch-resources' %}", {
+      //     method: 'POST',
+      //     body: {
+      //       course: course,
+      //       subject: subject,
+      //       resource: resource,
+      //     },
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     }
+      //   });
+      //   const resources = await response.json(); 
+      //   const resourcesContainer = document.getElementById('resources-row');
+      //   resourcesContainer.innerHTML = ``;
+      //   resources.forEach(resource => {
+      //     resourcesContainer.innerHTML += `
+      //     <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+      //           <div class="card card-blog card-plain">
+      //             <div class="position-relative">
+      //               <a class="d-block shadow-xl border-radius-xl">
+      //                 <iframe src="/uploads/${resource.file}}" width="300" height="200" ></iframe>
+      //               </a>
+      //             </div>
+      //             <div class="card-body px-1 pb-0">
+      //               <p class="text-gradient text-dark mb-2 text-sm">${resource.course}</p>
+      //               <a href="javascript:;">
+      //                 <h5>
+      //                   ${resource.subject}
+      //                 </h5>
+      //               </a>
+      //               <p class="mb-4 text-sm">
+      //                 Type: ${resource.type}
+      //               </p>
+      //               <div class="d-flex align-items-center justify-content-between">
+      //                 <a href="/uploads/${resource.file}" target="_blank">
+      //                   <button type="button" class="btn btn-outline-primary btn-sm mb-0">View ${resource.type}</button>
+      //                 </a>
+      //               </div>
+      //             </div>
+      //           </div>
+      //         </div>`;
+      //     console.log(resource)
+      //   })
+      // }
+
+      // const selectBox = document.querySelectorAll('.form-select');
+      // selectBox.forEach(element => element.addEventListener('change', event => {
+      //   let course = document.getElementById('select-course');
+      //   let subject = document.getElementById('select-subject');
+      //   let resource = document.getElementById('select-resource');
+      //   fetchResources(course.value, subject.value, resource.value)
+      // }));
+    </script>
 {% endblock javascripts %}
