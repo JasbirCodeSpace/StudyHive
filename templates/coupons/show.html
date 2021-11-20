@@ -1,0 +1,84 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="page-header min-height-200 border-radius-xl mt-4" style="background-image: url('/static/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+      <span class="mask bg-gradient-primary opacity-6"></span>
+    </div>
+    <div class="card card-body blur shadow-blur mx-4 mt-n6">
+      <h3 class="font-weight-bolder text-info text-gradient text-center">Coupons</h3>
+    </div>
+  </div>
+  <div class="container-fluid py-4">
+  
+    <div class="row my-3">
+        <div class="row my-4">
+            <div class="col-12 mb-md-0 mb-4">
+              <div class="card">
+                <div class="card-header pb-0">
+                  <div class="row">
+                    <div class="col-lg-6 col-7">
+                      <h6>Projects</h6>
+                      <p class="text-sm mb-0">
+                        <i class="fa fa-check text-info" aria-hidden="true"></i>
+                        Total: <span class="font-weight-bold ms-1">{{coupons|length}}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                  <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">S.No.</th>
+                          <th class="text-uppercase text-secondary text-xs font-weight-bolder">Name</th>
+                          <th class="text-uppercase text-secondary text-xs font-weight-bolder">Code</th>
+                          <th class="text-uppercase text-secondary text-xs font-weight-bolder">Link</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for coupon in coupons %}
+                        <tr>
+                          <td class="align-middle text-center text-sm">
+                            <span class="text-xs font-weight-bold">{{coupon.index}}</span>
+                          </td>
+                          <td class="text-sm">
+                            <h6 class="mb-0 text-sm">{{coupon.name}}</h6>
+                          </td>
+                          <td class="text-sm">
+                            <span class="badge bg-gradient-info text-sm font-weight-bold">{{coupon.code}}</span>
+                          </td>
+                          <td class="text-sm">
+                            <a href="{{coupon.link}}" target="_blank">
+                              <span class="badge bg-gradient-warning text-xs font-weight-bold">Link</span>
+                            </a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+
+  </div>
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+    {{ block.super }}
+{% endblock javascripts %}

@@ -21,6 +21,8 @@ class Resource(models.Model):
     type = models.CharField(choices=RESOURCE_TYPE, max_length=1)
     file = models.FileField(upload_to=get_upload_path)
     timestamp = models.DateTimeField(default=timezone.now)
+    views = models.PositiveIntegerField(default=0)
+    approved = models.BooleanField(default=False)
 
     class Meta:
 

@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-
+{% load resource_filters %}
 {% block title %} Dashboard {% endblock title %}
 
 <!-- Specific CSS goes HERE -->
@@ -58,6 +58,56 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mt-6 mb-4">
+          <div class="card bg-gradient-dark">
+            <div class="card-body p-3">
+              <div class="row">
+                <h4 class="align-middle text-center font-weight-bolder text-white">Popular Resources</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+        <div class="card-body p-3">
+          <div id="resources-row" class="row">
+            {% for resource in popular_resources %}
+            <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+              <div class="card card-blog card-plain">
+                <div class="position-relative">
+                  <a class="d-block shadow-xl border-radius-xl">
+                    <iframe src="/uploads/{{resource.file}}" width="300" height="200" ></iframe>
+                  </a>
+                </div>
+                <div class="card-body px-1 pb-0">
+                  <p class="text-gradient text-dark mb-2 text-sm">{{resource.course}}</p>
+                  <a href="javascript:;">
+                    <h5>
+                      {{resource.subject}}
+                    </h5>
+                  </a>
+                  <p class="mb-4 text-sm">
+                    Type: {{resource.type|resource_type}}
+                  </p>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <a class="view-resource" resource-pk="{{resource.pk}}" href="/uploads/{{resource.file}}" target="_blank" >
+                      <button type="button" class="btn btn-outline-primary btn-sm mb-0">View {{resource.type|resource_type}}</button>
+                    </a>
+                    <div class="mt-2">
+                      <span>
+                        <i class="fas fa-eye fa-lg" style="color:#3399ff" aria-hidden="true"></i>
+                        {{resource.views}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
         </div>
       </div>
 

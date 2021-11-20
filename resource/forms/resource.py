@@ -13,7 +13,7 @@ class RequestForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Course",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
 
@@ -21,7 +21,7 @@ class RequestForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Subject",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
 
@@ -29,7 +29,7 @@ class RequestForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Resource Type",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
 
@@ -50,7 +50,7 @@ class UploadForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Course",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
 
@@ -58,7 +58,7 @@ class UploadForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Subject",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
 
@@ -66,7 +66,7 @@ class UploadForm(forms.ModelForm):
             widget=forms.Select(
                 attrs={
                     "placeholder":"Resource Type",
-                    "class":"form-control",
+                    "class":"form-control form-select",
                 }
         ),required=True)
     

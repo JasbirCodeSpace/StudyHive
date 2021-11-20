@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('/static/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+    <div class="page-header min-height-200 border-radius-xl mt-4" style="background-image: url('/static/assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
       <span class="mask bg-gradient-primary opacity-6"></span>
     </div>
     <div class="card card-body blur shadow-blur mx-4 mt-n6">
@@ -75,9 +75,15 @@
                       Type: {{resource.type|resource_type}}
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
-                      <a href="/uploads/{{resource.file}}" target="_blank">
+                      <a class="view-resource" resource-pk="{{resource.pk}}" href="/uploads/{{resource.file}}" target="_blank" >
                         <button type="button" class="btn btn-outline-primary btn-sm mb-0">View {{resource.type|resource_type}}</button>
                       </a>
+                      <div class="mt-2">
+                        <span>
+                          <i class="fas fa-eye fa-lg" style="color:#3399ff" aria-hidden="true"></i>
+                          {{resource.views}}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -100,6 +106,17 @@
 {% block javascripts %}
     {{ block.super }}
     <script>
+      const updateViewCount = async (resourcePK)=>{
+        const response = await fetch("{% url 'resource-views' %}", {
+          method: 'POST',
+          body: JSON.stringify({
+            pk: resourcePK
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
       const fetchResources = async (course, subject, resource) => {
         const response = await fetch("{% url 'fetch-resources' %}", {
           method: 'POST',
@@ -135,14 +152,21 @@
                       Type: ${resource.type}
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
-                      <a href="${resource.file}" target="_blank">
+                      <a class="view-resource" resource-pk=${resource.pk} href="${resource.file}" target="_blank">
                         <button type="button" class="btn btn-outline-primary btn-sm mb-0">View ${resource.type}</button>
                       </a>
+                      <div class="mt-2">
+                        <span>
+                          <i class="fas fa-eye fa-lg" style="color:#3399ff" aria-hidden="true"></i>
+                          ${resource.views}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>`;
         })
+
       }
 
       const selectBox = document.querySelectorAll('.form-select');
@@ -152,5 +176,12 @@
         let resource = document.getElementById('select-resource');
         fetchResources(course.value, subject.value, resource.value)
       }));
+
+      const viewButtons = document.querySelectorAll('.view-resource');
+      viewButtons.forEach(element => element.addEventListener('click', event=>{
+        let resourcePK = element.getAttribute('resource-pk')
+        updateViewCount(resourcePK);
+      }));
+
     </script>
 {% endblock javascripts %}
