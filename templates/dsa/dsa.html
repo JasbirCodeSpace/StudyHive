@@ -24,6 +24,205 @@
         </div>
     </div>
   </div>
+  <div class="row">
+
+    <div class="col-xl-3 col-sm-6 mt-6">
+      <div class="card bg-gradient-dark">
+        <div class="card-body p-3">
+          <div class="row">
+            <h4 class="font-weight-bolder text-info text-gradient">Codechef</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-12 mb-md-0 mb-4">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>Ongoing Contests</h6>
+                <p class="text-sm mb-0">
+                  <i class="fa fa-check text-info" aria-hidden="true"></i>
+                  Total: <span class="font-weight-bold ms-1">{{codechef.present_contests|length}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Code</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolderps-2">Contest Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Start</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Duration</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Ends In</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for rows in codechef.present_contests %}
+                  <tr>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.contest_code}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.contest_name}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_start_date}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_duration}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_end_date}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <a href="https://www.codechef.com/{{rows.contest_code}}" target="_blank">
+                        <span class="badge badge-sm bg-gradient-success">Visit</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-12 mb-md-0 mb-4">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>Upcoming Contests</h6>
+                <p class="text-sm mb-0">
+                  <i class="fa fa-check text-info" aria-hidden="true"></i>
+                  Total: <span class="font-weight-bold ms-1">{{codechef.future_contests|length}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Code</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolderps-2">Contest Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Start</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Duration</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Ends In</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for rows in codechef.future_contests %}
+                  <tr>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.contest_code}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.contest_name}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_start_date}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_duration}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.contest_end_date}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <a href="https://www.codechef.com/{{rows.contest_code}}" target="_blank">
+                        <span class="badge badge-sm bg-gradient-secondary">Visit</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-xl-3 col-sm-6 mt-6">
+      <div class="card bg-gradient-dark">
+        <div class="card-body p-3">
+          <div class="row">
+            <h4 class="font-weight-bolder text-info text-gradient">Codeforces</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-2">
+      <div class="col-12 mb-md-0 mb-4">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="row">
+              <div class="col-lg-6 col-7">
+                <h6>Ongoing or upcoming contests</h6>
+                <p class="text-sm mb-0">
+                  <i class="fa fa-check text-info" aria-hidden="true"></i>
+                  Total: <span class="font-weight-bold ms-1">{{codeforces|length}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">ID</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolderps-2">Contest Name</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Start</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Duration</th>
+                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder">Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for rows in codeforces %}
+                  <tr>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.id}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <h6 class="mb-0 text-sm">{{rows.name}}</h6>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.startTimeSeconds|timestamp}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-xs font-weight-bold">{{rows.durationSeconds|duration}}</span>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">{{rows.type}}</span>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 {% endblock %}

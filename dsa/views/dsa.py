@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from ..models import question
 import datetime, random
-
+import requests
 
 @login_required(login_url='/login/')
 def index(request):
@@ -31,8 +31,27 @@ def index(request):
             qs.update(done=False)
             print("All Question Done")
 
+    codechef_data = fetch_codechef_data()
+    codeforces_data = fetch_codeforces_data()
     context = {
         'question': new_question,
+        'codechef': codechef_data,
+        'codeforces': codeforces_data,
     }
 
     return render(request, 'dsa/dsa.html', context)
+
+
+def fetch_codechef_data():
+    api_data = requests.get("https://www.codechef.com/api/list/contests/all?sort_by=START&sorting_order=asc&offset=0&mode=premium").json()
+    context = {
+        'present_contests': api_data['present_contests'],
+        'future_contests': api_data['future_contests'],
+    }
+
+    return context
+
+def fetch_codeforces_data():
+    api_data = requests.get("https://codeforces.com/api/contest.list?gym=false").json()
+    context = [contest for contest in api_data['result'] if contest['phase'] == 'BEFORE']
+    return context

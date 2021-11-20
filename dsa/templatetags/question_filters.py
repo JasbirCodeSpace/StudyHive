@@ -1,4 +1,5 @@
 from django import template
+import datetime
 
 register = template.Library()
 
@@ -10,3 +11,11 @@ def difficulty_level(level):
         return "Medium"
     elif level=='H':
         return "Hard"
+
+@register.filter
+def timestamp(value):
+    return datetime.datetime.fromtimestamp(value).strftime("%d %b %Y %I:%M:%S")
+
+@register.filter
+def duration(value):
+    return str(datetime.timedelta(seconds = value))
