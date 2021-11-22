@@ -22,14 +22,24 @@ def resources_view(request):
 @login_required
 @csrf_exempt
 def fectch_file_paths(request):
+
+    if request.method != 'POST':
+        return HttpResponse(status=400)   
+
+    body = json.loads(request.body.decode("utf-8"))
+
     filePaths = []
-    resources = Resource.objects.all()
+    if body['popular'] == True:
+        count = body['count'] if 'count' in body else 4
+        resources = Resource.objects.all().order_by('-views')[:count]
+    else:
+        resources = Resource.objects.all()
+    
     for resource in resources:
         res = {'path': resource.file.url, 'pk': resource.pk}
         filePaths.append(res)
 
     filePaths = json.dumps(filePaths, cls=DjangoJSONEncoder)
-    print(filePaths)
     return HttpResponse(filePaths, content_type="application/json")
 
 @login_required
