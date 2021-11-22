@@ -18,6 +18,7 @@ class Resource(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    title = models.CharField(blank=True,null=True, max_length=250)
     type = models.CharField(choices=RESOURCE_TYPE, max_length=1)
     file = models.FileField(upload_to=get_upload_path)
     timestamp = models.DateTimeField(default=timezone.now)
@@ -30,4 +31,4 @@ class Resource(models.Model):
         verbose_name_plural = 'Resources'
 
     def __str__(self):
-        return f"Resource [{self.student.name}][{self.type}]"
+        return f"Resource [{self.course}][{self.title}][{self.type}]"

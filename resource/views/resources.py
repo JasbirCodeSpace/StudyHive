@@ -64,6 +64,7 @@ def fetch_resources(request):
 
     for row in queryset:
         res = {}
+        res['title'] = row.title
         res['course'] = row.course.name
         res['subject'] = {'code': row.subject.code, 'name': row.subject.name}
         res['type'] = get_resource_type_full_name(row.type)

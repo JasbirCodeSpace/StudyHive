@@ -34,15 +34,22 @@
 
                   <div class="row">
                     <div class="col-md-12">
+                      <label>Title</label>
+                      <div class="mb-2">
+                        {{ form.title }}
+                      </div>
+                      <span class="text-error">{{ form.title.errors }}</span>
+                    </div>
+                    <div class="col-md-6">
                       <label>Course</label>
-                      <div class="mb-3">
+                      <div class="mb-2">
                         {{ form.course }}
                       </div>
                       <span class="text-error">{{ form.course.errors }}</span>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <label>Subject</label>
-                      <div class="mb-3">
+                      <div class="mb-2">
                         {{ form.subject }}
                       </div>
                       <span class="text-error">{{ form.subject.errors }}</span>
@@ -50,7 +57,7 @@
                   </div>
                   <div class="col-md-12">
                     <label>Type</label>
-                      <div class="mb-3">
+                      <div class="mb-2">
                         {{ form.type }}
                       </div>
                       <span class="text-error">{{ form.type.errors }}</span>

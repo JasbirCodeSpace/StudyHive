@@ -68,12 +68,14 @@
                     </a>
                   </div>
                   <div class="card-body px-1 pb-0">
-                    <p class="text-gradient text-dark mb-2 text-sm">{{resource.course}}</p>
-                    <a href="javascript:;">
-                      <h5>
-                        {{resource.subject}}
-                      </h5>
-                    </a>
+                    <div class="mb-2">
+                      <p class="text-gradient text-dark text-sm">
+                        {{resource.course}}<br>{{resource.subject}}
+                      </p>
+                    </div>
+                      <h6>
+                        {{resource.title}}
+                      </h6>
                     <p class="mb-4 text-sm">
                       Type: {{resource.type|resource_type}}
                     </p>
@@ -153,12 +155,14 @@
                     </a>
                   </div>
                   <div class="card-body px-1 pb-0">
-                    <p class="text-gradient text-dark mb-2 text-sm">${resource.course}</p>
-                    <a href="javascript:;">
-                      <h5>
-                        ${resource.subject.code} ${resource.subject.name}
-                      </h5>
-                    </a>
+                    <div class="mb-2">
+                      <p class="text-gradient text-dark text-sm">
+                        ${resource.course}<br>${resource.subject}
+                      </p>
+                    </div>
+                      <h6>
+                        ${resource.title}
+                      </h6>
                     <p class="mb-4 text-sm">
                       Type: ${resource.type}
                     </p>

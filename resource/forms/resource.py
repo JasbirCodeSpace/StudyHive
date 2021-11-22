@@ -1,4 +1,6 @@
 from django import forms
+from django.db.models.fields import TextField
+from django.forms.widgets import Widget
 from resource.models import request, course, subject, resource
 
 class RequestForm(forms.ModelForm):
@@ -8,6 +10,14 @@ class RequestForm(forms.ModelForm):
         ('N', 'Notes'),
         ('B', 'Book'),
     )
+
+    title = forms.CharField(            
+        widget=forms.Select(
+                attrs={
+                    "placeholder":"Title",
+                    "class":"form-control",
+                }
+    ), max_length=250, required=False)
 
     course = forms.ModelChoiceField(queryset=course.Course.objects.all(),
             widget=forms.Select(
@@ -32,10 +42,11 @@ class RequestForm(forms.ModelForm):
                     "class":"form-control form-select",
                 }
         ),required=True)
+    
 
     class Meta:
         model = request.Request
-        fields = ('course', 'subject', 'type')
+        fields = ('title', 'course', 'subject', 'type')
 
 
 class UploadForm(forms.ModelForm):
@@ -45,6 +56,14 @@ class UploadForm(forms.ModelForm):
         ('N', 'Notes'),
         ('B', 'Book'),
     )
+
+    title = forms.CharField(            
+        widget=forms.Select(
+                attrs={
+                    "placeholder":"Title",
+                    "class":"form-control",
+                }
+    ), max_length=250, required=False)
 
     course = forms.ModelChoiceField(queryset=course.Course.objects.all(),
             widget=forms.Select(
@@ -80,4 +99,4 @@ class UploadForm(forms.ModelForm):
 
     class Meta:
         model = resource.Resource
-        fields = ('course', 'subject', 'type', 'file')
+        fields = ('title', 'course', 'subject', 'type', 'file')
