@@ -9,13 +9,28 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import F
 
+
 @login_required(login_url='/login/')
 def resources_view(request):
     resources = Resource.objects.all()
     courses = Course.objects.all()
     subjects = Subject.objects.all()
     resource_type = {'B': 'Books', 'N':'Notes', 'Q': 'Question papers'}
+
     return render(request, "resource/show.html", {'resources': resources, 'courses': courses, 'subjects':subjects, 'resource_type': resource_type})
+
+@login_required
+@csrf_exempt
+def fectch_file_paths(request):
+    filePaths = []
+    resources = Resource.objects.all()
+    for resource in resources:
+        res = {'path': resource.file.url, 'pk': resource.pk}
+        filePaths.append(res)
+
+    filePaths = json.dumps(filePaths, cls=DjangoJSONEncoder)
+    print(filePaths)
+    return HttpResponse(filePaths, content_type="application/json")
 
 @login_required
 @csrf_exempt
