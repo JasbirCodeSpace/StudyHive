@@ -12,7 +12,7 @@ class RequestForm(forms.ModelForm):
     )
 
     title = forms.CharField(            
-        widget=forms.Select(
+        widget=forms.TextInput(
                 attrs={
                     "placeholder":"Title",
                     "class":"form-control",
@@ -58,7 +58,7 @@ class UploadForm(forms.ModelForm):
     )
 
     title = forms.CharField(            
-        widget=forms.Select(
+        widget=forms.TextInput(
                 attrs={
                     "placeholder":"Title",
                     "class":"form-control",
