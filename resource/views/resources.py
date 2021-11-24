@@ -73,6 +73,7 @@ def fetch_resources(request):
         res['student'] = {'id': row.student.pk, 'name': row.student.name}
         res['views'] = row.views
         res['pk'] = row.pk
+        res['approved'] = row.approved
         result.append(res)
 
     resources = json.dumps(result, cls=DjangoJSONEncoder)

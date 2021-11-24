@@ -57,6 +57,7 @@
           <div class="card-body p-3">
             <div id="resources-row" class="row">
               {% for resource in resources %}
+              {% if resource.approved %}
               <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card card-blog card-plain m-2">
                   <div class="card-header position-relative">
@@ -93,6 +94,7 @@
                   </div>
                 </div>
               </div>
+              {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -144,6 +146,7 @@
         const resourcesContainer = document.getElementById('resources-row');
         resourcesContainer.innerHTML = ``;
         resources.forEach(resource => {
+          if(resource.approved === true){
           resourcesContainer.innerHTML += `
           <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                 <div class="card card-blog card-plain m-2">
@@ -157,7 +160,7 @@
                   <div class="card-body px-1 pb-0">
                     <div class="mb-2">
                       <p class="text-gradient text-dark text-sm">
-                        ${resource.course}<br>${resource.subject}
+                        ${resource.course}<br>${resource.subject.code}&nbsp;${resource.subject.name}
                       </p>
                     </div>
                       <h6>
@@ -180,6 +183,7 @@
                   </div>
                 </div>
               </div>`;
+            }
         })
 
         updateCanvas(url);

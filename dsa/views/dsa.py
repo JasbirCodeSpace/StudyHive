@@ -43,7 +43,9 @@ def index(request):
 
 
 def fetch_codechef_data():
+    
     api_data = requests.get("https://www.codechef.com/api/list/contests/all?sort_by=START&sorting_order=asc&offset=0&mode=premium").json()
+
     context = {
         'present_contests': api_data['present_contests'],
         'future_contests': api_data['future_contests'],
