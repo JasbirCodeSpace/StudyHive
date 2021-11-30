@@ -43,6 +43,7 @@ propagating changes you make to your models (adding a field, deleting a model, e
 ```
 
 ## Directory Structure
+```sh
 templates -> contains the HTML templates
 static -> contains the static files
 <app_name> -> contains files for the app
@@ -52,4 +53,4 @@ static -> contains the static files
         <app_name>/views.py -> contains the views
         <app_name>/urls.py -> contains the urls
         <app_name>/forms.py -> contains the forms
-
+```
