@@ -11,7 +11,7 @@ $ cd StudyHive
 * Install virtualenvwrapper
 
 ```sh
-pip install virtualenvwrapper
+pip install virtualenvwrapper-win
 ```
 * Create a virtual environment to install dependencies in and activate it:
 
@@ -49,7 +49,6 @@ static -> contains the static files
 <app_name> -> contains files for the app
         <app_name>/migrations -> contains migration files
         <app_name>/models.py -> contains the models
-        <app_name>/tests.py -> contains the tests
         <app_name>/views.py -> contains the views
         <app_name>/urls.py -> contains the urls
         <app_name>/forms.py -> contains the forms
